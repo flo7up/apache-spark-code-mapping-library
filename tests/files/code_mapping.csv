@@ -1,0 +1,20 @@
+mapping_name;valid_from;valid_to;default_value;col_0;col_1;col_2;col_3
+country_codes;2021-01-01;2021-12-31;True;Switzerland;CH;;
+country_codes;2021-01-01;2021-12-31;;Germany;DE;;
+country_codes;2021-01-01;2021-06-01;;Italy;IT;;
+country_codes;2021-01-01;2021-06-01;;Australia;AU;;
+country_codes;2021-01-01;2021-12-31;;United States;US;;
+country_codes;2022-01-01;2022-12-31;;United States of America;US;;
+country_codes;2022-01-01;2022-12-31;;Italy 2;IT;;
+professions;2021-01-01;2021-12-31;;Fluglehrer;34401012;M;A
+professions;2021-01-01;2021-12-31;;Fluglehrerin;34401012;W;A
+professions;2000-12-31;2019-12-31;;HausmalerAlt;23204006;M;B
+professions;2021-01-01;2021-12-31;;Hausmaler;23204006;M;B
+professions;2021-01-01;2021-12-31;;Hausmalerin;23204006;W;B
+professions;2021-01-01;2021-12-31;;Informatiker;23204007;M;D
+professions;2022-01-01;2022-06-01;;Informatiker;23204007;M;D
+professions;2021-01-01;2021-12-31;;Informatikerin;23204007;W;D
+professions;2021-01-01;2021-12-31;;Lehrer;23204008;M;D
+professions;2000-12-31;2019-12-31;;LehrerinAlt;23204008;W;D
+professions;2021-01-01;2021-12-31;;Lehrerin;23204008;W;D
+professions;2021-01-01;2021-12-31;True;Unknown;Unknown;Unknown;Unknown
