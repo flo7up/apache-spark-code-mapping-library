@@ -3,7 +3,7 @@
 PySpark_code_mapping_library is a Python library for dealing with code mappings
 The library allows users to specify mappings in a code mapping csv.file.
 The library returns a mapping for a given Spark dataframe 
-Optinally, users can specify which input columns from the dataframe should be used as mapping inputs and which columns from the code mapping csv file should be taken into account.
+Optionally, users can specify which input columns from the dataframe should be used as mapping inputs and which columns from the code mapping csv file should be taken into account.
 
 
 
