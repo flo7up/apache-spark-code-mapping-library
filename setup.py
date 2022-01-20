@@ -1,12 +1,12 @@
 from setuptools import setup
 
 
-setup(name='zurich-codemapping',
+setup(name='spark-codemapping',
       version='0.0.1',
       author="Florian Müller",
-      author_email="fmu@ipt.ch",
+      author_email="flo7up@gmail.com",
       description="A sample PySpark library",
-      url="https://www.ipt.ch",
+      url="",
       packages=['pipelinehelper'],
       classifiers=[
           "Programming Language :: Python :: 3",

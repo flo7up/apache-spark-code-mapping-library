@@ -27,14 +27,14 @@ Example code_mapping.csv
 +------------+----------+----------+-------------+--------------+--------+-------+-------+
 |mapping_name|valid_from|  valid_to|default_value|         col_0|   col_1|  col_2|  col_3|
 +------------+----------+----------+-------------+--------------+--------+-------+-------+
-| professions|2021-01-01|2021-12-31|         null|    Fluglehrer|34401012|      M|      A|
-| professions|2021-01-01|2021-12-31|         null|  Fluglehrerin|34401012|      W|      A|
-| professions|2021-01-01|2021-12-31|         null|     Hausmaler|23204006|      M|      B|
-| professions|2021-01-01|2021-12-31|         null|   Hausmalerin|23204006|      W|      B|
-| professions|2021-01-01|2021-12-31|         null|  Informatiker|23204007|      M|      D|
-| professions|2021-01-01|2021-12-31|         null|Informatikerin|23204007|      W|      D|
-| professions|2021-01-01|2021-12-31|         null|        Lehrer|23204008|      M|      D|
-| professions|2021-01-01|2021-12-31|         null|      Lehrerin|23204008|      W|      D|
+| professions|2021-01-01|2021-12-31|         null|    Fluglehrer|3000|      M|      A|
+| professions|2021-01-01|2021-12-31|         null|  Fluglehrerin|3000|      W|      A|
+| professions|2021-01-01|2021-12-31|         null|     Hausmaler|2000|      M|      B|
+| professions|2021-01-01|2021-12-31|         null|   Hausmalerin|2000|      W|      B|
+| professions|2021-01-01|2021-12-31|         null|  Informatiker|4000|      M|      D|
+| professions|2021-01-01|2021-12-31|         null|Informatikerin|4000|      W|      D|
+| professions|2021-01-01|2021-12-31|         null|        Lehrer|5000|      M|      D|
+| professions|2021-01-01|2021-12-31|         null|      Lehrerin|5000|      W|      D|
 | professions|2021-01-01|2021-12-31|         true|       Unknown| Unknown|Unknown|Unknown|
 +------------+----------+----------+-------------+--------------+--------+-------+-------+
 
@@ -75,21 +75,21 @@ from code_lib_spark import ConfigReader, CodeMapper
 +---+----------+------------+------------+------+------------+--------------+------+---------------+
 | id|claim_type|date_occured|     comment|amount|loss_country|professioncode|gender|profession_type|
 +---+----------+------------+------------+------+------------+--------------+------+---------------+
-|  1|         2|  10.01.1999|       Test1|    50|          CH|      34401012|     M|              A|
-|  2|         2|  11.01.1999|       Test2|   100|          CH|      34401012|     W|              A|
-|  3|         2|  12.01.1999|       Test3|   150|          EN|      23204006|     M|              A|
-|  4|         3|  13.01.1999|       Test4|   200|          EN|      23204006|     W|              A|
-|  5|         4|  14.01.1999|       Test5|   250|          EN|      23204006|     W|              B|
-|  6|         4|  14.01.1999|Default Test|   250|          EN|             x|     W|              A|
-|  7|         4|  14.01.1999|      Defaut|   250|        blub|             x|     W|              A|
-|  8|         3|  13.01.1999|       Test4|   200|          EN|      23204007|     W|              C|
-|  9|         4|  14.01.1999|       Test5|   250|          EN|      23204007|     W|              C|
-| 10|         3|  13.01.1999|       Test4|   200|          EN|      23204008|     W|              C|
-| 11|         4|  14.01.1999|       Test5|   250|          EN|      23204008|     W|              C|
-|  8|         3|  13.01.1999|       Test4|   200|          EN|      23204007|     W|              B|
-|  9|         4|  14.01.1999|       Test5|   250|          EN|      23204007|     W|              B|
-| 10|         3|  13.01.1999|       Test4|   200|          EN|      23204008|     W|              A|
-| 11|         4|  14.01.1999|       Test5|   250|          EN|      23204008|     W|              A|
+|  1|         2|  10.01.1999|       Test1|    50|          CH|      3000|     M|              A|
+|  2|         2|  11.01.1999|       Test2|   100|          CH|      3000|     W|              A|
+|  3|         2|  12.01.1999|       Test3|   150|          EN|      2000|     M|              A|
+|  4|         3|  13.01.1999|       Test4|   200|          EN|      2000|     W|              A|
+|  5|         4|  14.01.1999|       Test5|   250|          EN|      2000|     W|              B|
+|  6|         4|  14.01.1999|Default Test|   250|          EN|         x|     W|              A|
+|  7|         4|  14.01.1999|      Defaut|   250|        blub|         x|     W|              A|
+|  8|         3|  13.01.1999|       Test4|   200|          EN|      4000|     W|              C|
+|  9|         4|  14.01.1999|       Test5|   250|          EN|      4000|     W|              C|
+| 10|         3|  13.01.1999|       Test4|   200|          EN|      5000|     W|              C|
+| 11|         4|  14.01.1999|       Test5|   250|          EN|      5000|     W|              C|
+|  8|         3|  13.01.1999|       Test4|   200|          EN|      4000|     W|              B|
+|  9|         4|  14.01.1999|       Test5|   250|          EN|      4000|     W|              B|
+| 10|         3|  13.01.1999|       Test4|   200|          EN|      5000|     W|              A|
+| 11|         4|  14.01.1999|       Test5|   250|          EN|      5000|     W|              A|
 +---+----------+------------+------------+------+------------+--------------+------+---------------+
 
 
@@ -100,14 +100,14 @@ returns:
 +------------+----------+----------+-------------+--------------+--------+-------+-------+
 |mapping_name|valid_from|  valid_to|default_value|         col_0|   col_1|  col_2|  col_3|
 +------------+----------+----------+-------------+--------------+--------+-------+-------+
-| professions|2021-01-01|2021-12-31|         null|    Fluglehrer|34401012|      M|      A|
-| professions|2021-01-01|2021-12-31|         null|  Fluglehrerin|34401012|      W|      A|
-| professions|2021-01-01|2021-12-31|         null|     Hausmaler|23204006|      M|      B|
-| professions|2021-01-01|2021-12-31|         null|   Hausmalerin|23204006|      W|      B|
-| professions|2021-01-01|2021-12-31|         null|  Informatiker|23204007|      M|      D|
-| professions|2021-01-01|2021-12-31|         null|Informatikerin|23204007|      W|      D|
-| professions|2021-01-01|2021-12-31|         null|        Lehrer|23204008|      M|      D|
-| professions|2021-01-01|2021-12-31|         null|      Lehrerin|23204008|      W|      D|
+| professions|2021-01-01|2021-12-31|         null|    Fluglehrer|3000|  M|      A|
+| professions|2021-01-01|2021-12-31|         null|  Fluglehrerin|3000|  W|      A|
+| professions|2021-01-01|2021-12-31|         null|     Hausmaler|2000|  M|      B|
+| professions|2021-01-01|2021-12-31|         null|   Hausmalerin|2000|  W|      B|
+| professions|2021-01-01|2021-12-31|         null|  Informatiker|4000|  M|      D|
+| professions|2021-01-01|2021-12-31|         null|Informatikerin|4000|  W|      D|
+| professions|2021-01-01|2021-12-31|         null|        Lehrer|5000|  M|      D|
+| professions|2021-01-01|2021-12-31|         null|      Lehrerin|5000|  W|      D|
 | professions|2021-01-01|2021-12-31|         true|       Unknown| Unknown|Unknown|Unknown|
 +------------+----------+----------+-------------+--------------+--------+-------+-------+
 
@@ -233,21 +233,21 @@ returns:
 +---+----------+------------+------------+------+------------+--------------+------+---------------+------------+
 | id|claim_type|date_occured|     comment|amount|loss_country|professioncode|gender|profession_type|      output|
 +---+----------+------------+------------+------+------------+--------------+------+---------------+------------+
-|  1|         2|  10.01.1999|       Test1|    50|          CH|      34401012|     M|              A|  Fluglehrer|
-|  2|         2|  11.01.1999|       Test2|   100|          CH|      34401012|     W|              A|Fluglehrerin|
-|  3|         2|  12.01.1999|       Test3|   150|          EN|      23204006|     M|              A|     Unknown|
-|  4|         3|  13.01.1999|       Test4|   200|          EN|      23204006|     W|              A|     Unknown|
-|  5|         4|  14.01.1999|       Test5|   250|          EN|      23204006|     W|              B| Hausmalerin|
+|  1|         2|  10.01.1999|       Test1|    50|          CH|      3000|     M|              A|  Fluglehrer|
+|  2|         2|  11.01.1999|       Test2|   100|          CH|      3000|     W|              A|Fluglehrerin|
+|  3|         2|  12.01.1999|       Test3|   150|          EN|      2000|     M|              A|     Unknown|
+|  4|         3|  13.01.1999|       Test4|   200|          EN|      2000|     W|              A|     Unknown|
+|  5|         4|  14.01.1999|       Test5|   250|          EN|      2000|     W|              B| Hausmalerin|
 |  6|         4|  14.01.1999|Default Test|   250|          EN|             x|     W|              A|     Unknown|
 |  7|         4|  14.01.1999|      Defaut|   250|        blub|             x|     W|              A|     Unknown|
-|  8|         3|  13.01.1999|       Test4|   200|          EN|      23204007|     W|              C|     Unknown|
-|  9|         4|  14.01.1999|       Test5|   250|          EN|      23204007|     W|              C|     Unknown|
-| 10|         3|  13.01.1999|       Test4|   200|          EN|      23204008|     W|              C|     Unknown|
-| 11|         4|  14.01.1999|       Test5|   250|          EN|      23204008|     W|              C|     Unknown|
-|  8|         3|  13.01.1999|       Test4|   200|          EN|      23204007|     W|              B|     Unknown|
-|  9|         4|  14.01.1999|       Test5|   250|          EN|      23204007|     W|              B|     Unknown|
-| 10|         3|  13.01.1999|       Test4|   200|          EN|      23204008|     W|              A|     Unknown|
-| 11|         4|  14.01.1999|       Test5|   250|          EN|      23204008|     W|              A|     Unknown|
+|  8|         3|  13.01.1999|       Test4|   200|          EN|      4000|     W|              C|     Unknown|
+|  9|         4|  14.01.1999|       Test5|   250|          EN|      4000|     W|              C|     Unknown|
+| 10|         3|  13.01.1999|       Test4|   200|          EN|      5000|     W|              C|     Unknown|
+| 11|         4|  14.01.1999|       Test5|   250|          EN|      5000|     W|              C|     Unknown|
+|  8|         3|  13.01.1999|       Test4|   200|          EN|      4000|     W|              B|     Unknown|
+|  9|         4|  14.01.1999|       Test5|   250|          EN|      4000|     W|              B|     Unknown|
+| 10|         3|  13.01.1999|       Test4|   200|          EN|      5000|     W|              A|     Unknown|
+| 11|         4|  14.01.1999|       Test5|   250|          EN|      5000|     W|              A|     Unknown|
 +---+----------+------------+------------+------+------------+--------------+------+---------------+------------+
 
 ### specify a custom output target   
