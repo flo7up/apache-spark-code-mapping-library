@@ -2,15 +2,16 @@
 
 PySpark_code_mapping_library is a Python library for dealing with code mappings
 The library allows users to specify mappings in a code mapping csv.file.
-The library returns a mapping for a given Spark dataframe 
+The library returns a mapping for a given Spark dataframe.
 Optionally, users can specify which input columns from the dataframe should be used as mapping inputs and which columns from the code mapping csv file should be taken into account.
 
 
 
 ## Installation
 
-The library was created for installation on Azure Synapse
-Create a build, then push the file to azure datalake storage and Synapse by using the Azure DevOps pipeline.  
+The library was  created for installation in your local Python environment.
+Create a build, then install the library in your Python environment.
+For installation on Azure Synapse, push the file to azure datalake storage and Synapse by using the Azure DevOps pipeline.  
 
 
 ## code_mapping.csv 
@@ -27,14 +28,14 @@ Example code_mapping.csv
 +------------+----------+----------+-------------+--------------+--------+-------+-------+
 |mapping_name|valid_from|  valid_to|default_value|         col_0|   col_1|  col_2|  col_3|
 +------------+----------+----------+-------------+--------------+--------+-------+-------+
-| professions|2021-01-01|2021-12-31|         null|    Fluglehrer|3000|      M|      A|
-| professions|2021-01-01|2021-12-31|         null|  Fluglehrerin|3000|      W|      A|
-| professions|2021-01-01|2021-12-31|         null|     Hausmaler|2000|      M|      B|
-| professions|2021-01-01|2021-12-31|         null|   Hausmalerin|2000|      W|      B|
-| professions|2021-01-01|2021-12-31|         null|  Informatiker|4000|      M|      D|
-| professions|2021-01-01|2021-12-31|         null|Informatikerin|4000|      W|      D|
-| professions|2021-01-01|2021-12-31|         null|        Lehrer|5000|      M|      D|
-| professions|2021-01-01|2021-12-31|         null|      Lehrerin|5000|      W|      D|
+| professions|2021-01-01|2021-12-31|         null|    M_Attribute_1|3000|      M|      A|
+| professions|2021-01-01|2021-12-31|         null|  F_Attribute_2|3000|      W|      A|
+| professions|2021-01-01|2021-12-31|         null|     M_Attribute_3|2000|      M|      B|
+| professions|2021-01-01|2021-12-31|         null|   F_Attribute_3|2000|      W|      B|
+| professions|2021-01-01|2021-12-31|         null|  M_Attribute_4|4000|      M|      D|
+| professions|2021-01-01|2021-12-31|         null|F_Attribute_4|4000|      W|      D|
+| professions|2021-01-01|2021-12-31|         null|        M_Attribute_5|5000|      M|      D|
+| professions|2021-01-01|2021-12-31|         null|      F_Attribute_5|5000|      W|      D|
 | professions|2021-01-01|2021-12-31|         true|       Unknown| Unknown|Unknown|Unknown|
 +------------+----------+----------+-------------+--------------+--------+-------+-------+
 
@@ -75,21 +76,21 @@ from code_lib_spark import ConfigReader, CodeMapper
 +---+----------+------------+------------+------+------------+--------------+------+---------------+
 | id|claim_type|date_occured|     comment|amount|loss_country|professioncode|gender|profession_type|
 +---+----------+------------+------------+------+------------+--------------+------+---------------+
-|  1|         2|  10.01.1999|       Test1|    50|          CH|      3000|     M|              A|
-|  2|         2|  11.01.1999|       Test2|   100|          CH|      3000|     W|              A|
-|  3|         2|  12.01.1999|       Test3|   150|          EN|      2000|     M|              A|
-|  4|         3|  13.01.1999|       Test4|   200|          EN|      2000|     W|              A|
-|  5|         4|  14.01.1999|       Test5|   250|          EN|      2000|     W|              B|
-|  6|         4|  14.01.1999|Default Test|   250|          EN|         x|     W|              A|
-|  7|         4|  14.01.1999|      Defaut|   250|        blub|         x|     W|              A|
-|  8|         3|  13.01.1999|       Test4|   200|          EN|      4000|     W|              C|
-|  9|         4|  14.01.1999|       Test5|   250|          EN|      4000|     W|              C|
-| 10|         3|  13.01.1999|       Test4|   200|          EN|      5000|     W|              C|
-| 11|         4|  14.01.1999|       Test5|   250|          EN|      5000|     W|              C|
-|  8|         3|  13.01.1999|       Test4|   200|          EN|      4000|     W|              B|
-|  9|         4|  14.01.1999|       Test5|   250|          EN|      4000|     W|              B|
-| 10|         3|  13.01.1999|       Test4|   200|          EN|      5000|     W|              A|
-| 11|         4|  14.01.1999|       Test5|   250|          EN|      5000|     W|              A|
+|  1|         2|  10.01.2021|       Test1|    50|          CH|      3000|     M|              A|
+|  2|         2|  11.01.2021|       Test2|   100|          CH|      3000|     W|              A|
+|  3|         2|  12.01.2021|       Test3|   150|          EN|      2000|     M|              A|
+|  4|         3|  13.01.2021|       Test4|   200|          EN|      2000|     W|              A|
+|  5|         4|  14.01.2021|       Test5|   250|          EN|      2000|     W|              B|
+|  6|         4|  14.01.2021|Default Test|   250|          EN|         x|     W|              A|
+|  7|         4|  14.01.2021|      Defaut|   250|        blub|         x|     W|              A|
+|  8|         3|  13.01.2021|       Test4|   200|          EN|      4000|     W|              C|
+|  9|         4|  14.01.2021|       Test5|   250|          EN|      4000|     W|              C|
+| 10|         3|  13.01.2021|       Test4|   200|          EN|      5000|     W|              C|
+| 11|         4|  14.01.2021|       Test5|   250|          EN|      5000|     W|              C|
+|  8|         3|  13.01.2021|       Test4|   200|          EN|      4000|     W|              B|
+|  9|         4|  14.01.2021|       Test5|   250|          EN|      4000|     W|              B|
+| 10|         3|  13.01.2021|       Test4|   200|          EN|      5000|     W|              A|
+| 11|         4|  14.01.2021|       Test5|   250|          EN|      5000|     W|              A|
 +---+----------+------------+------------+------+------------+--------------+------+---------------+
 
 
@@ -100,14 +101,14 @@ returns:
 +------------+----------+----------+-------------+--------------+--------+-------+-------+
 |mapping_name|valid_from|  valid_to|default_value|         col_0|   col_1|  col_2|  col_3|
 +------------+----------+----------+-------------+--------------+--------+-------+-------+
-| professions|2021-01-01|2021-12-31|         null|    Fluglehrer|3000|  M|      A|
-| professions|2021-01-01|2021-12-31|         null|  Fluglehrerin|3000|  W|      A|
-| professions|2021-01-01|2021-12-31|         null|     Hausmaler|2000|  M|      B|
-| professions|2021-01-01|2021-12-31|         null|   Hausmalerin|2000|  W|      B|
-| professions|2021-01-01|2021-12-31|         null|  Informatiker|4000|  M|      D|
-| professions|2021-01-01|2021-12-31|         null|Informatikerin|4000|  W|      D|
-| professions|2021-01-01|2021-12-31|         null|        Lehrer|5000|  M|      D|
-| professions|2021-01-01|2021-12-31|         null|      Lehrerin|5000|  W|      D|
+| professions|2021-01-01|2021-12-31|         null|    M_Attribute_1|3000|  M|      A|
+| professions|2021-01-01|2021-12-31|         null|  F_Attribute_2|3000|  W|      A|
+| professions|2021-01-01|2021-12-31|         null|     M_Attribute_3|2000|  M|      B|
+| professions|2021-01-01|2021-12-31|         null|   F_Attribute_3|2000|  W|      B|
+| professions|2021-01-01|2021-12-31|         null|  M_Attribute_4|4000|  M|      D|
+| professions|2021-01-01|2021-12-31|         null|F_Attribute_4|4000|  W|      D|
+| professions|2021-01-01|2021-12-31|         null|        M_Attribute_5|5000|  M|      D|
+| professions|2021-01-01|2021-12-31|         null|      F_Attribute_5|5000|  W|      D|
 | professions|2021-01-01|2021-12-31|         true|       Unknown| Unknown|Unknown|Unknown|
 +------------+----------+----------+-------------+--------------+--------+-------+-------+
 
@@ -121,21 +122,21 @@ returns:
 +--------------+
 |        output|
 +--------------+
-|  Fluglehrerin|
-|  Fluglehrerin|
-|   Hausmalerin|
-|   Hausmalerin|
-|   Hausmalerin|
+|  F_Attribute_2|
+|  F_Attribute_2|
+|   F_Attribute_3|
+|   F_Attribute_3|
+|   F_Attribute_3|
 |       Unknown|
 |       Unknown|
-|Informatikerin|
-|Informatikerin|
-|      Lehrerin|
-|      Lehrerin|
-|Informatikerin|
-|Informatikerin|
-|      Lehrerin|
-|      Lehrerin|
+|F_Attribute_4|
+|F_Attribute_4|
+|      F_Attribute_5|
+|      F_Attribute_5|
+|F_Attribute_4|
+|F_Attribute_4|
+|      F_Attribute_5|
+|      F_Attribute_5|
 +--------------+
 
 ### apply 1:1 mapping and return Spark dataframe with the mapped values   
@@ -148,21 +149,21 @@ df_output.show()
 +--------------+
 |        output|
 +--------------+
-|  Fluglehrerin|
-|  Fluglehrerin|
-|   Hausmalerin|
-|   Hausmalerin|
-|   Hausmalerin|
+|  F_Attribute_2|
+|  F_Attribute_2|
+|   F_Attribute_3|
+|   F_Attribute_3|
+|   F_Attribute_3|
 |       Unknown|
 |       Unknown|
-|Informatikerin|
-|Informatikerin|
-|      Lehrerin|
-|      Lehrerin|
-|Informatikerin|
-|Informatikerin|
-|      Lehrerin|
-|      Lehrerin|
+|F_Attribute_4|
+|F_Attribute_4|
+|      F_Attribute_5|
+|      F_Attribute_5|
+|F_Attribute_4|
+|F_Attribute_4|
+|      F_Attribute_5|
+|      F_Attribute_5|
 +--------------+
 
 ### apply 2:1 mapping and return Spark dataframe with the mapped values   
@@ -176,21 +177,21 @@ returns:
 +--------------+
 |        output|
 +--------------+
-|  Fluglehrerin|
-|  Fluglehrerin|
-|   Hausmalerin|
-|   Hausmalerin|
-|   Hausmalerin|
+|  F_Attribute_2|
+|  F_Attribute_2|
+|   F_Attribute_3|
+|   F_Attribute_3|
+|   F_Attribute_3|
 |       Unknown|
 |       Unknown|
-|Informatikerin|
-|Informatikerin|
-|      Lehrerin|
-|      Lehrerin|
-|Informatikerin|
-|Informatikerin|
-|      Lehrerin|
-|      Lehrerin|
+|F_Attribute_4|
+|F_Attribute_4|
+|      F_Attribute_5|
+|      F_Attribute_5|
+|F_Attribute_4|
+|F_Attribute_4|
+|      F_Attribute_5|
+|      F_Attribute_5|
 +--------------+
 
 ### apply 3:1 mapping and return Spark dataframe with the mapped values   
@@ -204,11 +205,11 @@ returns:
 +------------+
 |      output|
 +------------+
-|  Fluglehrer|
-|Fluglehrerin|
+|  M_Attribute_1|
+|F_Attribute_2|
 |     Unknown|
 |     Unknown|
-| Hausmalerin|
+| F_Attribute_3|
 |     Unknown|
 |     Unknown|
 |     Unknown|
@@ -233,21 +234,21 @@ returns:
 +---+----------+------------+------------+------+------------+--------------+------+---------------+------------+
 | id|claim_type|date_occured|     comment|amount|loss_country|professioncode|gender|profession_type|      output|
 +---+----------+------------+------------+------+------------+--------------+------+---------------+------------+
-|  1|         2|  10.01.1999|       Test1|    50|          CH|      3000|     M|              A|  Fluglehrer|
-|  2|         2|  11.01.1999|       Test2|   100|          CH|      3000|     W|              A|Fluglehrerin|
-|  3|         2|  12.01.1999|       Test3|   150|          EN|      2000|     M|              A|     Unknown|
-|  4|         3|  13.01.1999|       Test4|   200|          EN|      2000|     W|              A|     Unknown|
-|  5|         4|  14.01.1999|       Test5|   250|          EN|      2000|     W|              B| Hausmalerin|
-|  6|         4|  14.01.1999|Default Test|   250|          EN|             x|     W|              A|     Unknown|
-|  7|         4|  14.01.1999|      Defaut|   250|        blub|             x|     W|              A|     Unknown|
-|  8|         3|  13.01.1999|       Test4|   200|          EN|      4000|     W|              C|     Unknown|
-|  9|         4|  14.01.1999|       Test5|   250|          EN|      4000|     W|              C|     Unknown|
-| 10|         3|  13.01.1999|       Test4|   200|          EN|      5000|     W|              C|     Unknown|
-| 11|         4|  14.01.1999|       Test5|   250|          EN|      5000|     W|              C|     Unknown|
-|  8|         3|  13.01.1999|       Test4|   200|          EN|      4000|     W|              B|     Unknown|
-|  9|         4|  14.01.1999|       Test5|   250|          EN|      4000|     W|              B|     Unknown|
-| 10|         3|  13.01.1999|       Test4|   200|          EN|      5000|     W|              A|     Unknown|
-| 11|         4|  14.01.1999|       Test5|   250|          EN|      5000|     W|              A|     Unknown|
+|  1|         2|  10.01.2021|       Test1|    50|          CH|      3000|     M|              A|  M_Attribute_1|
+|  2|         2|  11.01.2021|       Test2|   100|          CH|      3000|     W|              A|F_Attribute_2|
+|  3|         2|  12.01.2021|       Test3|   150|          EN|      2000|     M|              A|     Unknown|
+|  4|         3|  13.01.2021|       Test4|   200|          EN|      2000|     W|              A|     Unknown|
+|  5|         4|  14.01.2021|       Test5|   250|          EN|      2000|     W|              B| F_Attribute_3|
+|  6|         4|  14.01.2021|Default Test|   250|          EN|             x|     W|              A|     Unknown|
+|  7|         4|  14.01.2021|      Defaut|   250|        blub|             x|     W|              A|     Unknown|
+|  8|         3|  13.01.2021|       Test4|   200|          EN|      4000|     W|              C|     Unknown|
+|  9|         4|  14.01.2021|       Test5|   250|          EN|      4000|     W|              C|     Unknown|
+| 10|         3|  13.01.2021|       Test4|   200|          EN|      5000|     W|              C|     Unknown|
+| 11|         4|  14.01.2021|       Test5|   250|          EN|      5000|     W|              C|     Unknown|
+|  8|         3|  13.01.2021|       Test4|   200|          EN|      4000|     W|              B|     Unknown|
+|  9|         4|  14.01.2021|       Test5|   250|          EN|      4000|     W|              B|     Unknown|
+| 10|         3|  13.01.2021|       Test4|   200|          EN|      5000|     W|              A|     Unknown|
+| 11|         4|  14.01.2021|       Test5|   250|          EN|      5000|     W|              A|     Unknown|
 +---+----------+------------+------------+------+------------+--------------+------+---------------+------------+
 
 ### specify a custom output target   
@@ -262,21 +263,21 @@ returns:
 +---------------+
 |new_column_name|
 +---------------+
-|   Fluglehrerin|
-|   Fluglehrerin|
-|    Hausmalerin|
-|    Hausmalerin|
-|    Hausmalerin|
+|   F_Attribute_2|
+|   F_Attribute_2|
+|    F_Attribute_3|
+|    F_Attribute_3|
+|    F_Attribute_3|
 |        Unknown|
 |        Unknown|
-| Informatikerin|
-| Informatikerin|
-|       Lehrerin|
-|       Lehrerin|
-| Informatikerin|
-| Informatikerin|
-|       Lehrerin|
-|       Lehrerin|
+| F_Attribute_4|
+| F_Attribute_4|
+|       F_Attribute_5|
+|       F_Attribute_5|
+| F_Attribute_4|
+| F_Attribute_4|
+|       F_Attribute_5|
+|       F_Attribute_5|
 +---------------+
 
 ### specify a custom map_target   
@@ -314,10 +315,10 @@ ValueError: Error 300: The function recognizes the mapping task as a 1:1 mapping
 ValueError: Error 301: The mapping function can handle up to 3 input values, but more than 3 input df values were given.
 ValueError: Error 302: The mapping function can handle up to 3 input values, but more than 3 mapping values were given.
 ValueError: Error 303: If mapping inputs and dataframe inputs are manually specified, they need to have the same number of arguments.
-ValueError: Error 400: The function recognizes the mapping task as a 2:1 mapping. However, there is a missmatch between the number of columns in the dataframe and the map_input.
-ValueError: Error 500: The function recognizes the mapping task as a 2:1 mapping. However, there is a missmatch between the number of columns in the dataframe and the map_input.
-ValueError: Error 600: The function recognizes the mapping task as a 3:1 mapping. However, there is a missmatch between the number of columns in the dataframe and the map_input.
-ValueError: Error 700: There is a missmatch between the number of defined mapping columns and the number of defined input columns
+ValueError: Error 400: The function recognizes the mapping task as a 2:1 mapping. However, there is a mismatch between the number of columns in the dataframe and the map_input.
+ValueError: Error 500: The function recognizes the mapping task as a 2:1 mapping. However, there is a mismatch between the number of columns in the dataframe and the map_input.
+ValueError: Error 600: The function recognizes the mapping task as a 3:1 mapping. However, there is a mismatch between the number of columns in the dataframe and the map_input.
+ValueError: Error 700: There is a mismatch between the number of defined mapping columns and the number of defined input columns
 
 
 
@@ -331,3 +332,5 @@ pytest -v -k test_2
 
 ## Build and create wheel file
 python setup.py bdist_wheel  
+
+
